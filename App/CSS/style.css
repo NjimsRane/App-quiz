@@ -107,15 +107,14 @@ main{
     transition:all 0.5s linear;
     box-shadow:0 0 5px  rgba(0,0,0,0.4);
     border-radius:5px;
-    overflow:hidden;
+   
 }
 
-.quiz-title{
+h2{
     font-size:1.2rem;
     text-transform:uppercase;
     margin-bottom:1em;
     text-align:center;
-    
 }
 
 li{
@@ -149,6 +148,7 @@ li input{
     color:#fff;
     text-transform:capitalize;
     transition:all 0.5s linear;
+    border-radius:0 0 5px 5px;
 }
 .btn-submit:hover{
     filter:brightness(0.8);

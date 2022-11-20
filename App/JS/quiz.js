@@ -41,32 +41,78 @@ const quizData = [
     },
 
 ];
-const quizTitle = document.querySelector('#quiz-title');
-const aAnswer = document.querySelector('#a-answer');
-const bAnswer = document.querySelector('#b-answer');
-const cAnswer = document.querySelector('#c-answer');
-const dAnswer = document.querySelector('#d-answer');
-const submitBtn = document.querySelector('.btn-submit')
 
-let currentQuiz = 0;
+// get elements from DOM
 
-function load(){
-    let quizItem = quizData[currentQuiz];
-    quizTitle.textContent = quizItem.question;
-    aAnswer.textContent = quizItem.a;
-    bAnswer.textContent = quizItem.b;
-    cAnswer.textContent = quizItem.c;
-    dAnswer.textContent = quizItem.d;
+const containerDisplay = document.querySelector('.container');
+const question = document.querySelector('.question');
+const answerA = document.getElementById('a-answer');
+const answerB = document.getElementById('b-answer');
+const answerC = document.getElementById('c-answer');
+const answerD = document.getElementById('d-answer');
+const btnSubmit = document.querySelector('.btn-submit');
+const inputSelected = document.querySelectorAll('input[type=radio]')
+
+let currentQuizData = 0;
+let score = 0;
+
+// function to load the container
+
+function containerLoad(){
+    unselectedAnswer();
+    // get item from quizData 
+    let quizDataItem = quizData[currentQuizData];
+    question.textContent = quizDataItem.question;
+    answerA.textContent = quizDataItem.a;
+    answerB.textContent = quizDataItem.b;
+    answerC.textContent = quizDataItem.c;
+    answerD.textContent = quizDataItem.d;
 }
+containerLoad();
 
-load();
+// Go to the next question  and will use button submit for that
 
-submitBtn.addEventListener('click',()=>{
-    currentQuiz++;
-    if(currentQuiz < quizData.length-1){
-        load()
-    }else{
-        alert('soule')
+btnSubmit.addEventListener('click',()=>{
+    let answer = selectedAnswer();
+// if any radio is not checked the submit button wont go to the next
+    if(answer){
+        if(answer === quizData[currentQuizData].correct){
+            score++;
+        }
+
+        currentQuizData++;
+        if(currentQuizData < quizData.length){
+            containerLoad();
+        }else{
+            if(score === quizData.length){
+                containerDisplay.innerHTML = `<h2>Felicitation , vous avez tout trouve !!!</h2>`;
+              
+            }else if(score === 0){
+                containerDisplay.innerHTML = `<h2>Vous avez tout rate, desole !!!</h2>`;
+               
+            }else{
+                containerDisplay.innerHTML = `<h2>Vous avez trouve ${score} reponse(s) sur ${quizData.length} !!!</h2>`;
+                
+            }
+        }
     }
-    
 })
+
+/* function to select radio checked and for that we wil get those selected from inputs
+*/
+function selectedAnswer(){
+    let answer = undefined;
+    inputSelected.forEach((selected)=>{
+        if(selected.checked){
+            answer = selected.id;
+        }
+    })
+    return answer
+}
+// unselect the next radio button
+
+function unselectedAnswer(){
+    inputSelected.forEach((selected)=>{
+        selected.checked = false;
+    })
+}
