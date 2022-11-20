@@ -136,7 +136,7 @@ li input{
     cursor: pointer;
 }
 
-.btn-submit{
+.btn-submit, .btn-reload{
     cursor: pointer;
     width:100%;
     margin-inline:auto;
@@ -149,6 +149,10 @@ li input{
     text-transform:capitalize;
     transition:all 0.5s linear;
     border-radius:0 0 5px 5px;
+}
+
+.btn-reload{
+    background-color:teal;
 }
 .btn-submit:hover{
     filter:brightness(0.8);

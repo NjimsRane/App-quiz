@@ -85,13 +85,22 @@ btnSubmit.addEventListener('click',()=>{
             containerLoad();
         }else{
             if(score === quizData.length){
-                containerDisplay.innerHTML = `<h2>Felicitation , vous avez tout trouve !!!</h2>`;
+                containerDisplay.innerHTML = `<h2>Felicitation , vous avez tout trouve !!!</h2> 
+                
+                <button class='btn-reload' onclick='location.reload()'>Reload</button>
+                `;
               
             }else if(score === 0){
-                containerDisplay.innerHTML = `<h2>Vous avez tout rate, desole !!!</h2>`;
+                containerDisplay.innerHTML = `<h2>Vous avez tout rate, desole !!!</h2>
+                
+                <button class='btn-reload' onclick='location.reload()'>Reload</button>
+                `;
                
             }else{
-                containerDisplay.innerHTML = `<h2>Vous avez trouve ${score} reponse(s) sur ${quizData.length} !!!</h2>`;
+                containerDisplay.innerHTML = `<h2>Vous avez trouve ${score} reponse(s) sur ${quizData.length} !!!</h2>
+                
+                <button class='btn-reload' onclick='location.reload()'>Reload</button>
+                `;
                 
             }
         }
